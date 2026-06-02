@@ -1087,10 +1087,36 @@ async def root():
 async def health_check():
     return {"status": "ok", "timestamp": datetime.now().isoformat()}
 
+def unwrap_a2a(payload: dict) -> dict:
+    """If *payload* is an A2A JSON-RPC envelope, extract the inner plan data.
+
+    The MuleSoft Omni Gateway enforces A2A Schema Validation on the Travel
+    Concierge route, so the frontend wraps the structured plan/refine data
+    inside `params.message.parts`.  We look for a part with `type: "data"`,
+    falling back to JSON-parsing the first `type: "text"` part.
+    """
+    if "jsonrpc" not in payload or "params" not in payload:
+        return payload
+    try:
+        parts = payload["params"]["message"]["parts"]
+        for p in parts:
+            if p.get("type") == "data" and isinstance(p.get("data"), dict):
+                return p["data"]
+        for p in parts:
+            if p.get("type") == "text":
+                try:
+                    return json.loads(p["text"])
+                except (json.JSONDecodeError, TypeError):
+                    pass
+    except (KeyError, TypeError):
+        pass
+    return payload
+
+
 @app.post("/plan")
 async def plan_trip(request: Request):
-    # Read raw JSON body
-    data = await request.json()
+    raw_payload = await request.json()
+    data = unwrap_a2a(raw_payload)
     print("Incoming request payload:", data)
 
     async def event_stream():
@@ -1318,7 +1344,8 @@ async def refine_trip(request: Request):
     Returns a plain JSON response (not SSE) since only one agent runs and
     the drawer UX shows a single pending state.
     """
-    data = await request.json()
+    raw_payload = await request.json()
+    data = unwrap_a2a(raw_payload)
     print("Incoming /refine payload:", {k: v for k, v in data.items() if k != "places"})
 
     refinement = (data.get("refinement") or "").strip()
