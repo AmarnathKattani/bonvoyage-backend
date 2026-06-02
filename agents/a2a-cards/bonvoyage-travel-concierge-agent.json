@@ -1,0 +1,40 @@
+{
+  "protocolVersion": "0.2.9",
+  "name": "BonVoyage Travel Concierge Agent",
+  "description": "AI-powered Travel Concierge that constructs well-paced, day-by-day itineraries from a list of places. Optimizes for geographic proximity, alternates meals with sightseeing, and supports itinerary refinement requests.",
+  "url": "${registry.url}/bonvoyage-travel-concierge-agent",
+  "capabilities": {},
+  "version": "1.0.0",
+  "provider": {
+    "organization": "BonVoyage Travel AI",
+    "url": "https://bonvoyage-travel.example.com"
+  },
+  "defaultInputModes": ["application/json", "text/plain"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "itinerary-planning",
+      "name": "Itinerary Planning",
+      "description": "Constructs a realistic multi-day travel itinerary from a list of places. Groups stops by geographic proximity, paces days with 2-3 blocks each, alternates meals and sightseeing, and assigns time windows to each block.",
+      "tags": ["travel", "itinerary", "planning", "scheduling", "logistics"],
+      "examples": [
+        "Create a 3-day itinerary for Rome using these 9 places: Colosseum, Vatican, Trastevere...",
+        "Rearrange my Tokyo itinerary so that Day 2 focuses on Asakusa area instead of Shibuya."
+      ],
+      "inputModes": ["application/json", "text/plain"],
+      "outputModes": ["application/json"]
+    },
+    {
+      "id": "itinerary-refinement",
+      "name": "Itinerary Refinement",
+      "description": "Modifies an existing itinerary based on traveler feedback. Reorders, retimes, swaps, or drops blocks while preserving unchanged parts and maintaining a humane pace.",
+      "tags": ["travel", "itinerary", "refinement", "customization", "modification"],
+      "examples": [
+        "Move the restaurant on Day 1 to Day 3 and add more museum time.",
+        "I want a later start on Day 1, push everything to start at 10 AM."
+      ],
+      "inputModes": ["application/json", "text/plain"],
+      "outputModes": ["application/json"]
+    }
+  ]
+}

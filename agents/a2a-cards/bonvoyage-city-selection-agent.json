@@ -1,0 +1,28 @@
+{
+  "protocolVersion": "0.2.9",
+  "name": "BonVoyage City Selection Agent",
+  "description": "AI-powered Destination Analyst that recommends travel cities based on user interests, personality traits, and budget. Returns scored suggestions with weather summaries, estimated flight costs, and geographic coordinates.",
+  "url": "${registry.url}/bonvoyage-city-selection-agent",
+  "capabilities": {},
+  "version": "1.0.0",
+  "provider": {
+    "organization": "BonVoyage Travel AI",
+    "url": "https://bonvoyage-travel.example.com"
+  },
+  "defaultInputModes": ["application/json", "text/plain"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "city-recommendation",
+      "name": "City Recommendation",
+      "description": "Recommends travel destinations by matching user preferences (interests, personality traits, budget) to ideal cities. Returns a scored list of city suggestions including weather, estimated flight costs, and GPS coordinates.",
+      "tags": ["travel", "destination", "city-selection", "budget", "recommendation"],
+      "examples": [
+        "Recommend 3 cities for a beach lover with a $2000 budget for 5 days.",
+        "Find budget-friendly European cities for a family trip with kids who love museums."
+      ],
+      "inputModes": ["application/json", "text/plain"],
+      "outputModes": ["application/json"]
+    }
+  ]
+}

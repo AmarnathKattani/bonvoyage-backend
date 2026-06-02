@@ -1,0 +1,28 @@
+{
+  "protocolVersion": "0.2.9",
+  "name": "BonVoyage Flight Expert Agent",
+  "description": "AI-powered Flight Pricing Expert that estimates realistic economy round-trip flight costs between an origin and destination city, providing low-high price ranges in the traveler's preferred currency.",
+  "url": "${registry.url}/bonvoyage-flight-expert-agent",
+  "capabilities": {},
+  "version": "1.0.0",
+  "provider": {
+    "organization": "BonVoyage Travel AI",
+    "url": "https://bonvoyage-travel.example.com"
+  },
+  "defaultInputModes": ["application/json", "text/plain"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "flight-cost-estimation",
+      "name": "Flight Cost Estimation",
+      "description": "Estimates realistic economy round-trip flight costs between an origin and destination city. Returns a tight low-high price range based on route distance, demand, and seasonal factors.",
+      "tags": ["travel", "flights", "pricing", "cost-estimation", "airline"],
+      "examples": [
+        "Estimate flight cost from New York to Lisbon in USD.",
+        "How much would a round-trip economy flight from London to Bangkok cost in GBP?"
+      ],
+      "inputModes": ["application/json", "text/plain"],
+      "outputModes": ["application/json"]
+    }
+  ]
+}

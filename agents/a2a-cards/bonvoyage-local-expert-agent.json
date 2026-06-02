@@ -1,0 +1,28 @@
+{
+  "protocolVersion": "0.2.9",
+  "name": "BonVoyage Local Expert Agent",
+  "description": "AI-powered Local Guide that suggests real, verified places, restaurants, and activities in a travel destination. Returns detailed place data with coordinates, local currency costs, time estimates, and insider tips.",
+  "url": "${registry.url}/bonvoyage-local-expert-agent",
+  "capabilities": {},
+  "version": "1.0.0",
+  "provider": {
+    "organization": "BonVoyage Travel AI",
+    "url": "https://bonvoyage-travel.example.com"
+  },
+  "defaultInputModes": ["application/json", "text/plain"],
+  "defaultOutputModes": ["application/json"],
+  "skills": [
+    {
+      "id": "local-places-recommendation",
+      "name": "Local Places Recommendation",
+      "description": "Suggests specific places to visit, eat, and experience in a destination city. Enforces strict accuracy: real places only, correct geography, verified activities. Returns place name, type, hours needed, cost in local currency, GPS coordinates, and local tips.",
+      "tags": ["travel", "local-guide", "restaurants", "attractions", "activities", "places"],
+      "examples": [
+        "Suggest 10 places to visit in Lisbon for a foodie who loves history over 4 days.",
+        "What are the best hidden gems and restaurants in Barcelona for a 3-day trip?"
+      ],
+      "inputModes": ["application/json", "text/plain"],
+      "outputModes": ["application/json"]
+    }
+  ]
+}
